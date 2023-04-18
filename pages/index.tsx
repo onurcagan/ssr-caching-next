@@ -1,8 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
-export default function Index({
-  time,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Index({ time }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <main>
       <h1>SSR Caching with Next.js</h1>
@@ -11,14 +9,7 @@ export default function Index({
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ time: string }> = async ({
-  res,
-}) => {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-
+export const getServerSideProps: GetServerSideProps<{ time: string }> = async () => {
   return {
     props: {
       time: new Date().toISOString(),
