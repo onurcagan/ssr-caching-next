@@ -9,7 +9,8 @@ export default function Index({ time }: InferGetServerSidePropsType<typeof getSe
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ time: string }> = async () => {
+export const getServerSideProps: GetServerSideProps<{ time: string }> = async ({ res }) => {
+  res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=60')
   return {
     props: {
       time: new Date().toISOString(),
