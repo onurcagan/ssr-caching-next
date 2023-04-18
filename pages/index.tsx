@@ -12,7 +12,7 @@ export default function Index({ time }: InferGetServerSidePropsType<typeof getSe
 }
 
 export const getServerSideProps: GetServerSideProps<{ time: string }> = async ({ res }) => {
-  res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=60')
+  //   res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=60')
   const timeResponse = await fetch('https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam', {
     next: { revalidate: 30 },
   }).then((res) => res.json())
