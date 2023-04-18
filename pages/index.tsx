@@ -5,6 +5,7 @@ export default function Index({ time }: InferGetServerSidePropsType<typeof getSe
     <main>
       <h1>SSR Caching with Next.js</h1>
       <time dateTime={time}>{time}</time>
+      <p>Refresh the page, s-maxage=10s, stale-while-revalidate=60s.</p>
     </main>
   )
 }
